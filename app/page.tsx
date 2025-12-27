@@ -1,111 +1,71 @@
 "use client";
 
-import { useState } from "react";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import Link from "next/link";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+  Announcement,
+  AnnouncementTag,
+  AnnouncementTitle,
+} from "@/components/ui/shadcn-io/announcement";
+import { ServerIP } from "@/components/ui/server-ip";
+import { ServerStatus } from "@/components/ui/server-status";
 
 export default function HomePage() {
-  const [role, setRole] = useState<string>("");
-
-  const handleSubmit = () => {
-    alert(
-      "Danke! Bitte erstelle jetzt einen Screenshot deiner Bewerbung und eröffne damit ein Ticket auf unserem Discord-Server. Viel Erfolg!",
-    );
-  };
-
   return (
-    <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-zinc-900 via-indigo-950 to-zinc-900 p-4">
-      <Card className="w-full max-w-xl bg-black/60 text-white shadow-2xl border-white/10">
-        <CardHeader className="text-center">
-          <CardTitle className="text-2xl">MinigamesHD Bewerbungen</CardTitle>
-          <CardDescription className="text-zinc-300">
-            Bewirb dich für unser Team! Fülle das Formular ehrlich aus.
-          </CardDescription>
+    <main className="min-h-screen flex items-center justify-center p-6">
+      <Card className="w-full max-w-5xl shadow-2xl">
+        <CardHeader className="text-center space-y-6">
+          {/* Announcement */}
+          <div className="flex justify-center">
+            <Announcement asChild themed>
+              <Link href="/apply">
+                <AnnouncementTag>Latest update</AnnouncementTag>
+                <AnnouncementTitle>Application added →</AnnouncementTitle>
+              </Link>
+            </Announcement>
+          </div>
+
+          {/* Hero */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="space-y-4"
+          >
+            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
+              MiniGamesHD
+            </h1>
+
+            <p className="max-w-2xl mx-auto text-lg">
+              Ein moderner Minecraft Minigame-Server mit Fokus auf Qualität,
+              Fairness und Community.
+            </p>
+          </motion.div>
+
+          {/* CTAs */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15, duration: 0.5 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+          >
+            <Button asChild size="lg">
+              <Link href="/apply">Jetzt bewerben</Link>
+            </Button>
+
+            <Button asChild size="lg" variant="outline">
+              <a href="/discord" target="_blank" rel="noreferrer">
+                Discord beitreten
+              </a>
+            </Button>
+          </motion.div>
         </CardHeader>
 
-        <CardContent className="space-y-4">
-          <div className="space-y-2">
-            <Label>Minecraft Name</Label>
-            <Input placeholder="Dein Ingame-Name" />
-          </div>
-
-          <div className="space-y-2">
-            <Label>Discord Name</Label>
-            <Input placeholder="Name#0000" />
-          </div>
-
-          <div className="space-y-2">
-            <Label>Alter</Label>
-            <Input type="number" placeholder="Dein Alter" />
-          </div>
-
-          <div className="space-y-2">
-            <Label>Bewerbungsrolle</Label>
-            <Select onValueChange={setRole}>
-              <SelectTrigger>
-                <SelectValue placeholder="Bitte auswählen" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="co-owner">Co-Owner</SelectItem>
-                <SelectItem value="admin">Admin</SelectItem>
-                <SelectItem value="mod">Moderator</SelectItem>
-                <SelectItem value="support">Support</SelectItem>
-                <SelectItem value="builder">Builder</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          {role === "co-owner" && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label>Echter Vorname</Label>
-                <Input placeholder="Vorname" />
-              </div>
-              <div className="space-y-2">
-                <Label>Echter Nachname</Label>
-                <Input placeholder="Nachname" />
-              </div>
-            </div>
-          )}
-
-          <div className="space-y-2">
-            <Label>Erfahrung</Label>
-            <Textarea placeholder="Erzähle uns von deiner Erfahrung" />
-          </div>
-
-          <div className="space-y-2">
-            <Label>Warum möchtest du ins Team?</Label>
-            <Textarea placeholder="Deine Motivation" />
-          </div>
-
-          <div className="space-y-2">
-            <Label>Zeit pro Woche</Label>
-            <Input placeholder="z.B. 5–10 Stunden" />
-          </div>
-
-          <Button onClick={handleSubmit} className="w-full mt-4">
-            Bewerbung abschicken
-          </Button>
-
-          <p className="text-xs text-center text-zinc-400 pt-2">
-            © MinigamesHD – Bewerbungsseite
-          </p>
+        <CardContent className="flex flex-col items-center justify-center gap-3 pt-6">
+          <ServerIP />
+          <ServerStatus />
         </CardContent>
       </Card>
     </main>
