@@ -21,8 +21,10 @@ export default function HomePage() {
           <div className="flex justify-center">
             <Announcement asChild themed>
               <Link href="/apply">
-                <AnnouncementTag>Latest update</AnnouncementTag>
-                <AnnouncementTitle>Application added →</AnnouncementTitle>
+                <AnnouncementTag>Letztes Update</AnnouncementTag>
+                <AnnouncementTitle>
+                  Ctrl + K- / Ctrl + J-Menu hinzugefügt →
+                </AnnouncementTitle>
               </Link>
             </Announcement>
           </div>
