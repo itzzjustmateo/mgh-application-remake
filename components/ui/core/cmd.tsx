@@ -48,8 +48,9 @@ export function CommandMenu() {
     { label: "Home", action: navigate("/") },
     { label: "Team", action: navigate("/team") },
     { label: "Regeln", action: navigate("/rules") },
-    { label: "FAQ", action: navigate("/faq") },
     { label: "Bewerben", action: navigate("/apply") },
+    { label: "Status", action: navigate("/status") },
+    { label: "FAQ", action: navigate("/faq") },
   ];
 
   const actionCommands: CommandEntry[] = [

@@ -15,9 +15,9 @@ export function Navbar() {
           </Button>
 
           <Button asChild variant="outline">
-            <a href="/discord" target="_blank" rel="noreferrer">
+            <Link href="/discord" target="_blank" rel="noreferrer">
               Discord
-            </a>
+            </Link>
           </Button>
         </nav>
       </div>
